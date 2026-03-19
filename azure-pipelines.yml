@@ -1,0 +1,85 @@
+name: UI Test Automation
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+  jobs:
+  ui-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+
+    env:
+      BROWSER: ${{ matrix.browser }}
+      HEADLESS: true
+      SLOW_MO: 0
+      USER_NAME_STD: ${{ secrets.USER_NAME_STD }}
+      USER_NAME_PERF: ${{ secrets.USER_NAME_PERF }}
+      USER_NAME_VISUAL: ${{ secrets.USER_NAME_VISUAL }}
+      USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers and OS dependencies
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run UI tests
+        run: npm run test -- --runInBand
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report-${{ matrix.browser }}
+          path: reports/html
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ matrix.browser }}
+          path: reports/screenshots
+
+      - name: Upload videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos-${{ matrix.browser }}
+          path: reports/videos
+
+      - name: Upload traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: traces-${{ matrix.browser }}
+          path: reports/traces
+
+      - name: Upload JUnit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-${{ matrix.browser }}
+          path: reports/junit
