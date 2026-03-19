@@ -1,0 +1,35 @@
+{
+  "name": "saucedemo-bdd-framework",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:rtl": "jest --selectProjects rtl --runInBand",
+    "test:bdd": "jest --selectProjects bdd-ui --runInBand",
+    "test:ci": "jest --runInBand --coverage"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "dotenv": "^16.4.7",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-cucumber": "^4.5.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-html-reporters": "^3.1.7",
+    "jest-junit": "^16.0.0",
+    "playwright": "^1.52.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}

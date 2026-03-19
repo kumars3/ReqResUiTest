@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="10.059">
+  <testsuite name="Multiple items checkout" errors="0" failures="0" skipped="1" timestamp="2026-03-19T17:53:51" time="2.264" tests="1">
+    <testcase classname="Multiple items checkout Checkout with multiple items" name="Multiple items checkout Checkout with multiple items" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="Login and logout" errors="0" failures="0" skipped="1" timestamp="2026-03-19T17:53:53" time="0.369" tests="1">
+    <testcase classname="Login and logout Standard user logs in and logs out successfully" name="Login and logout Standard user logs in and logs out successfully" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="Single item checkout" errors="0" failures="0" skipped="0" timestamp="2026-03-19T17:53:54" time="7.292" tests="1">
+    <testcase classname="Single item checkout Checkout with one item" name="Single item checkout Checkout with one item" time="6.931">
+    </testcase>
+  </testsuite>
+</testsuites>
